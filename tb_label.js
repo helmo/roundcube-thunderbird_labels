@@ -213,7 +213,10 @@ rcm_tb_label_insert = function(uid, row) {
       });
       if (rcmail.env.tb_label_style === 'bullets') {
         for (idx in message.flags.tb_labels) {
-          spanobj.append('<span class="tb_label_' + message.flags.tb_labels[idx] + '">&#8226;</span>');
+          var dotobj = rowobj.find("td.subject span.tb_label_dots span.tb_label_"+message.flags.tb_labels[idx]);
+          if (dotobj == 'undefined' || dotobj.length == 0) {
+            spanobj.append('<span class="tb_label_' + message.flags.tb_labels[idx] + '">&#8226;</span>');
+          }
         }
       } else {
         for (idx in message.flags.tb_labels) {
